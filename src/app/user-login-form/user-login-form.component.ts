@@ -9,6 +9,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { getLocaleFirstDayOfWeek } from '@angular/common';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './user-login-form.component.css'
 })
 export class UserLoginFormComponent implements OnInit {
-  @Input() userData = { username: '', password: '', email: '', birthday: '' };
+  @Input() data = { user: '', password: ''};
 
 constructor(
     public fetchApiData: FetchApiDataService,
@@ -28,7 +29,9 @@ ngOnInit(): void {
 }
 // This is the function responsible for sending the form inputs to the backend
 loginUser(): void {
-  this.fetchApiData.userLogin(this.userData).subscribe((response) => {
+  this.fetchApiData.userLogin(this.data).subscribe((response) => {
+    localStorage.setItem('user', response.data.user);
+    localStorage.setItem('token', response.token);
 // Logic for a successful user registration goes here! (To be implemented)
    this.dialogRef.close(); // This will close the modal on success!
    this.snackBar.open(response, 'OK', {

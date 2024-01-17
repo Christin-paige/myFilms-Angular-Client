@@ -3,7 +3,7 @@
     Welcome to myFilms!
   </h1>
   <button
-    Mat-raised-button
+    mat-raised-button
     (click)="openUserRegistrationDialog()"
     style="margin-right: 20px;"
     color="primary"
@@ -12,13 +12,20 @@
   </button>
  
   <button
-  Mat-raised-button
+  mat-raised-button
   (click)="openUserLoginDialog()"
   style="margin-right: 20px;"
   color="primary"
 >
    Login
 </button>
+<button
+    mat-raised-button
+    color="primary"
+    (click)="openMoviesDialog()"
+  >
+    All Movies
+  </button>
 
 </div>
 
