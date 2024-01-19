@@ -73,7 +73,7 @@ public getDirector(directorName:String): Observable<any> {
 //get genre
 public getGenre(genreName: string): Observable<any> {
   const token = localStorage.getItem('token');
-  return this.http.get<Response>(apiUrl + 'movies/genres/' + genreName, {headers: new HttpHeaders(
+  return this.http.get<Response>(apiUrl + 'genre', {headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(

@@ -1,21 +1,30 @@
 // src/app/movie-card/movie-card.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
+
+import { GenreCardComponent } from '../genre-card/genre-card.component';
+
+
 
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrl: './movie-card.component.css'
+  styleUrl: './movie-card.component.scss'
 })
+
 export class MovieCardComponent implements OnInit {
   movies: any[] = [];
 
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar) { }
+    public snackBar: MatSnackBar,
+    public router: Router
+    ) { }
 
 ngOnInit(): void {
   this.getMovies();
@@ -27,5 +36,20 @@ getMovies(): void {
       console.log(this.movies);
       return this.movies;
     });
+   
   }
-}
+
+   /**
+   * opens a dialog with more information about the movie's genre
+   * @param genre
+   */
+
+  openGenreDialog(Genre: any): void {
+    this.dialog.open(GenreCardComponent, {
+      data: {
+       title: Genre.Name,
+       content: Genre.Description
+      }
+    })
+
+  }}
