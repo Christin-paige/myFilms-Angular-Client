@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 interface Genre {
   Name: string;
   Description: string;
+  
 }
 
 @Component({

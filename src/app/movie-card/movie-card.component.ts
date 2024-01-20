@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 
 import { GenreCardComponent } from '../genre-card/genre-card.component';
+import { DirectorCardComponent } from '../director-card/director-card.component'
 
 
 
@@ -51,5 +52,20 @@ getMovies(): void {
        content: Genre.Description
       }
     })
+    };
+     /**
+   * opens a dialog with more information about the movie's genre
+   * @param genre
+   */
 
-  }}
+     openDirectorDialog(Director: any): void {
+      this.dialog.open(DirectorCardComponent, {
+        data: {
+          name: Director.Name,
+          bio: Director.Bio,
+          birthday: Director.Birth
+        }
+      })
+     }
+
+  }

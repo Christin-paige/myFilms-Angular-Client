@@ -60,7 +60,7 @@ public getOneMovie(Title: string): Observable<any>{
 }
 
 //get director
-public getDirector(directorName:String): Observable<any> {
+public getDirector(directorName: string): Observable<any> {
   const token = localStorage.getItem('token');
   return this.http.get<Response>(apiUrl + 'movies/directors/' + directorName, {headers: new HttpHeaders(
     {
