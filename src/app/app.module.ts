@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +25,8 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { GenreCardComponent } from './genre-card/genre-card.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
+import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
@@ -43,9 +47,12 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     GenreCardComponent,
     DirectorCardComponent,
+    SynopsisCardComponent,
+    NavbarComponent,
    
   ],
   imports: [
+    MatToolbarModule,
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     HttpClientModule,
