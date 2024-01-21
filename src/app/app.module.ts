@@ -32,6 +32,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
+  
   { path: 'movies', component: MovieCardComponent },
   {path: 'genre', component: GenreCardComponent },
   { path: 'director', component: DirectorCardComponent },
@@ -48,7 +49,7 @@ const appRoutes: Routes = [
     GenreCardComponent,
     DirectorCardComponent,
     SynopsisCardComponent,
-    NavbarComponent,
+    NavbarComponent
    
   ],
   imports: [
