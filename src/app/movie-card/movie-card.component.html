@@ -2,7 +2,7 @@
     <mat-card *ngFor="let movie of movies;" style="flex: 1 1 auto;" class="card">
         <mat-card-header>
         <mat-card-title class="title">{{movie.Title}}</mat-card-title>
-            
+
         </mat-card-header>
         <img src={{movie.ImagePath}} alt= {{movie.Title}} />
         <mat-card-actions>
@@ -28,7 +28,24 @@
             >
                 Synopsis
             </button>
-            <mat-icon>favorite_border</mat-icon>
+
+            <button mat-button
+             color="warn"
+            (click)="addToFavorites(movie)"
+            >
+            Add to Favorites
+        </button>
+
+        
+        
+
+      
+       
+            
+        
+   
         </mat-card-actions>
     </mat-card>
 </div>
+
+

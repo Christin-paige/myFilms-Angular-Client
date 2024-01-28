@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,12 +28,13 @@ import { GenreCardComponent } from './genre-card/genre-card.component';
 import { DirectorCardComponent } from './director-card/director-card.component';
 import { SynopsisCardComponent } from './synopsis-card/synopsis-card.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
 
 
 
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
-  
+  { path: 'profile', component: ProfilePageComponent },
   { path: 'movies', component: MovieCardComponent },
   {path: 'genre', component: GenreCardComponent },
   { path: 'director', component: DirectorCardComponent },
@@ -49,7 +51,9 @@ const appRoutes: Routes = [
     GenreCardComponent,
     DirectorCardComponent,
     SynopsisCardComponent,
-    NavbarComponent
+    NavbarComponent,
+    ProfilePageComponent,
+    
    
   ],
   imports: [

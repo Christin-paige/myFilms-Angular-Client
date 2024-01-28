@@ -1,0 +1,99 @@
+<div class="container responsive-grid">
+  <div fxLayout="row wrap">
+    
+   
+            
+            
+           <mat-card *ngIf="FavoriteMovies.length > 0; else noFavoriteMovies">
+         
+          <mat-card fxFlex="25%" *ngFor="let movie of FavoriteMovies" style="flex: 1 1 auto;" class="card">
+          
+        
+           <mat-card-header>
+            <mat-card-title class="title">{{ movie.Title }}</mat-card-title>
+           </mat-card-header>
+
+         <img mat-card-image src={{movie.ImagePath}} alt= {{movie.Title}} />
+         
+      
+          </mat-card>
+           </mat-card>
+          </div>
+      
+          <ng-template #noFavoriteMovies>
+            <p>No favorite movies available.</p>
+          </ng-template>
+        
+            
+          <h1 class="profile">Profile</h1>
+          <p>{{ user.Name }}</p>
+          <p>{{user.Email}}</p>
+
+        
+          
+          <h2>Favorite Movies</h2>
+       
+       
+      <mat-card-title>Update Info</mat-card-title>
+   
+    <mat-card-content>
+        <form>
+        <mat-form-field>
+           
+          <input
+            matInput
+            [(ngModel)]="userData.Name" 
+            placeholder={{user.Name}}
+            type="text"
+            name="Username"
+            required
+          >
+          </mat-form-field>
+          <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.Password"
+            type = "password"
+            placeholder="******"
+            name="Password"
+            required
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.Email"
+            type = "email"
+            placeholder={{user.Email}}
+            name="Email"
+            required
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            [(ngModel)]="userData.Birthday"
+            type = "date"
+            placeholder={{user.Birthday}} 
+            name="birthday"
+          >
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+   
+   
+      
+        <button
+          mat-raised-button
+          (click)="updatedUser()"
+          color="primary"
+        >
+         Update
+        </button>
+
+     
+   </div>
+ 
+ 
+  
+

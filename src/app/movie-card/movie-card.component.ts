@@ -1,14 +1,16 @@
 // src/app/movie-card/movie-card.component.ts
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FetchApiDataService } from '../fetch-api-data.service'
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
 
+
 import { GenreCardComponent } from '../genre-card/genre-card.component';
 import { DirectorCardComponent } from '../director-card/director-card.component';
 import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component';
+
 
 
 
@@ -18,8 +20,16 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
   styleUrl: './movie-card.component.scss'
 })
 
-export class MovieCardComponent implements OnInit {
-  movies: any[] = [];
+export class MovieCardComponent  {
+  @Input() movies:any;
+ 
+  
+  @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
+
+ // buttonColor: string = "gray";
+
+
+
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -30,6 +40,8 @@ export class MovieCardComponent implements OnInit {
 
 ngOnInit(): void {
   this.getMovies();
+
+ 
 }
 
 getMovies(): void {
@@ -50,7 +62,8 @@ getMovies(): void {
     this.dialog.open(GenreCardComponent, {
       data: {
        title: Genre.Name,
-       content: Genre.Description
+       content: Genre.Description,
+       
       }
     })
     };
@@ -77,4 +90,24 @@ getMovies(): void {
       })
      }
 
+     addToFavorites(movie: any): void {
+      const MovieID = movie._id;
+       this.fetchApiData.addFavMovie(MovieID).subscribe(
+        (response: any) => {
+        console.log('movie added to favorites', response);
+        },
+      (error) => {
+        console.error('error added movie to favorites:', error);
+      }
+     )
+    
   }
+
+  }
+
+
+   
+ //changeColor(newColor: string){
+  //this.buttonColor = newColor;
+ //}
+  
