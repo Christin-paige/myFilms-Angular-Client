@@ -17,7 +17,7 @@ import { SynopsisCardComponent } from '../synopsis-card/synopsis-card.component'
 @Component({
   selector: 'app-movie-card',
   templateUrl: './movie-card.component.html',
-  styleUrl: './movie-card.component.scss'
+  styleUrls: ['./movie-card.component.scss']
 })
 
 export class MovieCardComponent  {
@@ -26,7 +26,7 @@ export class MovieCardComponent  {
   
   @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
 
- // buttonColor: string = "gray";
+
 
 
 
@@ -46,9 +46,10 @@ ngOnInit(): void {
 
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
+      this.movies = resp || [];
+     
       console.log(this.movies);
-      return this.movies;
+      
     });
    
   }
@@ -90,24 +91,29 @@ getMovies(): void {
       })
      }
 
+   
      addToFavorites(movie: any): void {
       const MovieID = movie._id;
        this.fetchApiData.addFavMovie(MovieID).subscribe(
-        (response: any) => {
+        
+       (response: any) => {
+         movie.isSelected=!movie.isSelected;
+          movie.notSelected=!movie.isSelected;
+         
+          window.localStorage.setItem('FavoriteMovies', JSON.stringify(MovieID));
+         
         console.log('movie added to favorites', response);
         },
+        
       (error) => {
         console.error('error added movie to favorites:', error);
       }
      )
     
   }
+ 
+ 
 
-  }
-
-
-   
- //changeColor(newColor: string){
-  //this.buttonColor = newColor;
- //}
+}
+ 
   

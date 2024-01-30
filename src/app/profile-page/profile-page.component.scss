@@ -1,18 +1,36 @@
 
-
-
-.container {
+.grid{
     padding: 50px;
-    display:grid;
-    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
-    gap: 50px;
+    background-color: rgb(73, 72, 72);
+    color: white;
+}
+.responsive-grid {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+    gap: 24px;
+    background-color: black;
+   
+
+}
+
+.profile.container {
+    align-items: center;
+    background-color: black;
+}
+.favMovies {
     background-color: black;
 
 }
+h1 {
+    color: white;
+    text-align: center;
+}
 img {
     width: 100%;
-    height: 400px;
-    object-fit: cover;
+    height: 500px;
+    
+    
     
 }
 .title {
@@ -22,14 +40,9 @@ img {
 }
 
 
-button {
-    font-family: monospace;
-    
-}
 
 .card {
    background-color: black;
     font-style: oblique;
-    color: white;
-    
+    color: white;  
 }

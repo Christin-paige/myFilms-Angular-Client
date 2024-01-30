@@ -29,20 +29,14 @@
                 Synopsis
             </button>
 
-            <button mat-button
-             color="warn"
-            (click)="addToFavorites(movie)"
-            >
-            Add to Favorites
-        </button>
-
         
-        
-
-      
-       
-            
-        
+        <button mat-icon-button
+        aria-label="Favorite movie heart icon"
+        color="warn"
+        (click)="addToFavorites(movie)" 
+        >
+            <mat-icon>{{movie.isSelected ? "favorite" : "favorite_border"}}</mat-icon>
+          </button>
    
         </mat-card-actions>
     </mat-card>

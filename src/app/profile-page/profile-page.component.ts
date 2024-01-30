@@ -13,6 +13,7 @@ import { formatDate } from '@angular/common';
 
 
 
+
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
@@ -29,11 +30,8 @@ export class ProfilePageComponent implements OnInit {
 
  @Input() movie: any;
  @Input() movies: any;
+ 
 
- 
- 
- 
- 
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -82,6 +80,24 @@ export class ProfilePageComponent implements OnInit {
   
     )
     };
+
+   deleteFavMovie(movie: any): void {
+    const MovieID = movie._id;
+   this.fetchApiData.deleteFavoriteMovie(this.user.Name, movie._id).subscribe((response: any) => {
+    localStorage.removeItem('movie')
+   
+   movie.isSelected=movie.isSelected;
+   movie.isSelected=!movie.isSelected;
+  
+   this.snackBar.open('Movie successfully deleted from Favorite Movies List', 'OK', {
+    duration: 2000
+   });
+
+   })
+   console.log('Movie deleted: ', MovieID)
+    }
+
+   
 
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
