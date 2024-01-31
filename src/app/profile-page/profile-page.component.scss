@@ -1,30 +1,30 @@
 
 .grid{
     padding: 50px;
-    background-color: rgb(73, 72, 72);
+    background: rgb(5,0,0);
+    background: linear-gradient(180deg, rgba(5,0,0,1) 0%, rgba(122,27,27,1) 79%, rgba(237,5,62,1) 100%);
     color: white;
+    font-family: monospace;
 }
 .responsive-grid {
     padding: 50px;
     display: grid;
     grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
     gap: 24px;
-    background-color: black;
-   
-
+  
 }
 
 .profile.container {
     align-items: center;
-    background-color: black;
+   
 }
-.favMovies {
-    background-color: black;
 
-}
 h1 {
     color: white;
     text-align: center;
+}
+h2 {
+    padding: 20px;
 }
 img {
     width: 100%;
@@ -42,7 +42,7 @@ img {
 
 
 .card {
-   background-color: black;
+  
     font-style: oblique;
     color: white;  
 }

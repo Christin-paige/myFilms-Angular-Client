@@ -5,7 +5,8 @@
     display:grid;
     grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
     gap: 50px;
-    background-color: black;
+    background: rgb(5,0,0);
+    background: linear-gradient(180deg, rgba(5,0,0,1) 0%, rgba(122,27,27,1) 79%, rgba(237,5,62,1) 100%);
 
 }
 
@@ -28,7 +29,7 @@ button {
 .card {
    background-color: black;
 
-    ft-style: oblique;
+    font-style: oblique;
     color: white;
     
 }

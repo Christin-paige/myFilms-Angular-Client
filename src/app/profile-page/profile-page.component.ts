@@ -10,6 +10,7 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { formatDate } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 
 
 
@@ -28,6 +29,7 @@ export class ProfilePageComponent implements OnInit {
 
  @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
 
+ @Input() updateUser = { Name: '', Password: '', Email: '', Birthday:''}
  @Input() movie: any;
  @Input() movies: any;
  
@@ -84,7 +86,7 @@ export class ProfilePageComponent implements OnInit {
    deleteFavMovie(movie: any): void {
     const MovieID = movie._id;
    this.fetchApiData.deleteFavoriteMovie(this.user.Name, movie._id).subscribe((response: any) => {
-    localStorage.removeItem('movie')
+    localStorage.removeItem('FavoriteMovies')
    
    movie.isSelected=movie.isSelected;
    movie.isSelected=!movie.isSelected;
@@ -122,7 +124,6 @@ getUser(): void {
       this.userData.Birthday = this.user.Birthday;
       this.userData.FavoriteMovies = this.user.FavoriteMovies
       
-      
       });
     }
       /**
@@ -134,8 +135,15 @@ getUser(): void {
  */
   
   updatedUser(): void {
-    this.fetchApiData.updateUserInfo(this.userData).subscribe ((response) => {
-      console.log(response);
+    this.fetchApiData.updateUserInfo().subscribe ((response: any) => {
+      console.log('success!', response)
+      this.user = response;
+      this.updateUser.Name = this.user.Name;
+      this.updateUser.Password = this.user.Password;
+      this.updateUser.Email = this.user.Email;
+      this.updateUser.Birthday = this.user.Birthday;
+    
+      console.log(this.user);
       localStorage.setItem('user', JSON.stringify(response)); // Update local storage with the new user data
      this.user = response;
       this.snackBar.open('Profile successfully updated', 'OK', {
@@ -154,12 +162,13 @@ getUser(): void {
         });
       }
     }
+   
+    
   );
 }
 
+
 }
-
-
 
 
 

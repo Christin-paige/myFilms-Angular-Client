@@ -112,7 +112,7 @@ public addFavMovie(MovieID: string): Observable<any>{
 public getFavoriteMoviesList(): Observable<any> {
   const token = localStorage.getItem('token');
   const user = JSON.parse(localStorage.getItem('user') || '{}')
-  return this.http.get<Response>(`${apiUrl}users/${user.Name}`, {headers: new HttpHeaders(
+  return this.http.get<Response>(`${apiUrl}/users/${user.Name}`, {headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(
@@ -122,20 +122,18 @@ public getFavoriteMoviesList(): Observable<any> {
 }
 
 //edit user
-updateUserInfo(updatedUser: any): Observable<any> {
-  
-  const user = JSON.parse(localStorage.getItem('user') || '{}');
+updateUserInfo(): Observable<any> {
   const token = localStorage.getItem('token');
-
-  const headers = new HttpHeaders({
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  return this.http.put<Response>(apiUrl + 'users/', user.Name, 
+  {headers: new HttpHeaders (
+  {
     Authorization: 'Bearer ' + token,
-  });
-  
-  return this.http.put(apiUrl + 'users/' + user.Name, updatedUser, { headers })
-    .pipe(
+  })})
+  .pipe(
       map(this.extractResponseData),
     catchError(this.handleError)
-  );
+  )
 }
 //delete user
 public deleteUserInfo(Name: string): Observable<any> {
