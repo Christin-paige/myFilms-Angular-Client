@@ -27,10 +27,6 @@ export class MovieCardComponent  {
   @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
 
 
-
-
-
-
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
@@ -103,6 +99,9 @@ getMovies(): void {
           window.localStorage.setItem('FavoriteMovies', JSON.stringify(MovieID));
          
         console.log('movie added to favorites', response);
+        this.snackBar.open('Movie successully added to Favorite Movies List', 'OK', {
+          duration:2000
+        })
         },
         
       (error) => {

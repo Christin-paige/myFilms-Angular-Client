@@ -16,7 +16,7 @@
        
       <input
         matInput
-        [(ngModel)]="userData.Name" 
+        [(ngModel)]="userData.Name"
         placeholder={{user.Name}}
         type="text"
         name="Username"
@@ -60,6 +60,7 @@
     <button
       mat-raised-button
       (click)="updatedUser()"
+      type="submit"
       color="primary"
     >
      Update

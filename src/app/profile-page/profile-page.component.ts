@@ -23,14 +23,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 })
 
 export class ProfilePageComponent implements OnInit {
- user: any = {};
- FavoriteMovies: any[] = [];
- 
 
  @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
 
- @Input() updateUser = { Name: '', Password: '', Email: '', Birthday:''}
- @Input() movie: any;
+ user: any = {};
+ FavoriteMovies: any[] = [];
+ //updateUser = {Name: '', Password: '', Email: '', Birthday:''}
+
+
+ //@Input() movie: any;
  @Input() movies: any;
  
 
@@ -126,54 +127,36 @@ getUser(): void {
       
       });
     }
-      /**
- * This method will update the user's data
- * @returns user's data
- * @returns updated user's data saved to local storage
- * @returns user notified of success
- * @returns user notified of error
- */
+
   
   updatedUser(): void {
-    this.fetchApiData.updateUserInfo().subscribe ((response: any) => {
-      console.log('success!', response)
-      this.user = response;
-      this.updateUser.Name = this.user.Name;
-      this.updateUser.Password = this.user.Password;
-      this.updateUser.Email = this.user.Email;
-      this.updateUser.Birthday = this.user.Birthday;
-    
-      console.log(this.user);
-      localStorage.setItem('user', JSON.stringify(response)); // Update local storage with the new user data
-     this.user = response;
-      this.snackBar.open('Profile successfully updated', 'OK', {
-        duration: 2000
-      });
-     
-    },  
-    (error) => {
-      if (error.status === 422) {
-        // Handle validation errors, log them, or display to the user
-        console.error('Validation error:', error.error);
-      } else {
-        console.error('Error updating user data:', error);
-        this.snackBar.open('Error updating user data', 'OK', {
-          duration: 2000
-        });
-      }
-    }
-   
-    
-  );
-}
+    console.log('userData', this.userData);
+       this.fetchApiData.updateUserInfo(this.userData).subscribe((response)=>{
+       console.log('user updated', response);
+       localStorage.setItem('user', JSON.stringify(response));
+        //this.updateUser = result;
+        //this.updateUser.Name = this.user.Name;
+        //this.updateUser.Email = this.user.Email;
+        //this.updateUser.Birthday = this.user.Birthday;
+  this.snackBar.open('profile successully updated', 'OK', {
+    duration:2000
+  })
+},
+(error) => {
+  if(error.status === 422) {
+    console.error('Validation error:', error.error);
+  }else{
+    console.error('Error updating user data:', error);
+    this.snackBar.open('Error updating user data', 'OK', {
+      duration: 2000
+    });
+  }
+})
 
 
 }
 
-
-
-
-  
+}
 
 
 
