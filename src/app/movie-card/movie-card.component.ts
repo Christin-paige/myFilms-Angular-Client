@@ -65,8 +65,8 @@ getMovies(): void {
     })
     };
      /**
-   * opens a dialog with more information about the movie's genre
-   * @param genre
+   * opens a dialog with more information about the movie's director
+   * @param director
    */
 
      openDirectorDialog(Director: any): void {
@@ -79,6 +79,11 @@ getMovies(): void {
       })
      }
 
+     /**
+      * opens a dialog with a description about the movie
+      * @param Description 
+      */
+
      openSynopsisDialog(Description: any): void {
       this.dialog.open(SynopsisCardComponent, {
         data: {
@@ -87,7 +92,11 @@ getMovies(): void {
       })
      }
 
-   
+   /**
+    * If user clicks the heart icon, the movie will be added to their favorite movie list
+    * snackBar will communicate that the movie has been successfully added
+    * @param movie 
+    */
      addToFavorites(movie: any): void {
       const MovieID = movie._id;
        this.fetchApiData.addFavMovie(MovieID).subscribe(

@@ -32,6 +32,13 @@ export class ProfilePageComponent implements OnInit {
  @Input() movies: any;
  
 
+/**
+ * The constructor sets up the environment with the service and dependencies
+ * @param fetchApiData 
+ * @param router 
+ * @param snackBar 
+ * @param dialog 
+ */
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -41,11 +48,12 @@ export class ProfilePageComponent implements OnInit {
    
   ) { }
 
-   /**
+  /**
    * first this component loaded, it will load the current user data, update localstorage
    */
+
   ngOnInit(): void {
-    forkJoin({ //forkJoin allows both calls to be made simultaneously and wait for both responses before proceeding
+    forkJoin({                                     //forkJoin allows both calls to be made simultaneously and wait for both responses before proceeding
       user: this.fetchApiData.getOneUser(),
       movies: this.fetchApiData.getAllMovies()
     }).subscribe(
@@ -64,7 +72,12 @@ export class ProfilePageComponent implements OnInit {
       }
     );
   }
-//moved getFavoriteMoviesList to the top so it could run before anything else and the movies would populate the browser
+
+  /**
+   * moved getFavoriteMoviesList to the top so it could run before anything else and the movies would populate the browser
+   * @returns user's favorite movie list
+   */
+
   getFavoriteMoviesList(): void {
     this.fetchApiData.getOneUser().subscribe((response: any) => {
 
@@ -72,7 +85,8 @@ export class ProfilePageComponent implements OnInit {
       console.log('this user', this.user)
       this.userData.FavoriteMovies = this.user.FavoriteMovies;
       console.log('favorite movies', this.user.FavoriteMovies)
-      // Use the filter method to filter movies based on FavoriteMovie
+
+      // Used the filter method to filter movies based on FavoriteMovie
       const favoriteMovies = this.movies.filter((movie)=> {
         return this.userData.FavoriteMovies.includes(movie._id)
       })
@@ -83,6 +97,12 @@ export class ProfilePageComponent implements OnInit {
     )
     };
 
+    /**
+     * deletes favorite movie from user's list of favorite movies
+     * snackBar tells user that movie has been deleted and when page is refreshed, movie will be removed
+     * @param movie 
+     */
+
    deleteFavMovie(movie: any): void {
     const MovieID = movie._id;
    this.fetchApiData.deleteFavoriteMovie(this.user.Name, movie._id).subscribe((response: any) => {
@@ -90,7 +110,7 @@ export class ProfilePageComponent implements OnInit {
    
    movie.isSelected=movie.isSelected;
    movie.isSelected=!movie.isSelected;
-  
+   window.location.reload()
    this.snackBar.open('Movie successfully deleted from Favorite Movies List', 'OK', {
     duration: 2000
    });
@@ -100,7 +120,9 @@ export class ProfilePageComponent implements OnInit {
     }
 
    
-
+/**
+ * @returns all movies for getFavoriteMoviesList() to filter
+ */
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -129,14 +151,17 @@ getUser(): void {
 
   
   updatedUser(): void {
+
     //get current user info from local storage
     let currentUser = localStorage.getItem('user')
     console.log('current username', currentUser)
+
     //handles if user is not logged in
     if (!currentUser){
       console.log('username not found')
       return;
     }
+
     //extract username from current user format
     const username = currentUser && JSON.parse(currentUser).Name;
 
@@ -149,12 +174,13 @@ getUser(): void {
             this.userData.Name = response.Name;
           }
           
-          localStorage.setItem('user', JSON.stringify(this.userData));//updating entire user object
+          localStorage.setItem('user', JSON.stringify(this.userData));        //updating entire user object
         console.log('profile updated user: ', this.userData.Name);
 
-        window.location.reload
+        window.location.reload()
           this.snackBar.open('profile successully updated', 'OK', {
             duration:2000
+           
  
          })
       
