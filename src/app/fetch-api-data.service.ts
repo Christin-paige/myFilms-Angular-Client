@@ -122,17 +122,20 @@ public getFavoriteMoviesList(): Observable<any> {
 }
 
 //edit user
-updateUserInfo(userData: any): Observable<any> {
-  console.log('userData from api ', userData)
+public updateUserInfo(currentUser: string, userDetails: any): Observable<any> {//userDetails is the object containing the info to be updated
+  console.log('current user from api: ',currentUser,'updatedUser: ', userDetails)
   const token = localStorage.getItem('token');
-  //const user = JSON.parse(localStorage.getItem('user') || '{}')
- 
-  //localStorage.setItem('user', JSON.stringify(userData))
-  return this.http.put(apiUrl + 'users/' + userData.Name,
-   userData, {headers: new HttpHeaders(
-    {
+  const user = JSON.parse(localStorage.getItem('user') || '{}')
+  
+//  localStorage.setItem('user', JSON.stringify(userDetails))
+  
+  return this.http.put(apiUrl + 'users/' + user.Name, userDetails, {
+    headers: new HttpHeaders(
+   
+    { 
        Authorization: 'Bearer ' + token,
-    }
+    },
+   
    )}
    ).pipe(
       map(this.extractResponseData),

@@ -9,10 +9,6 @@ import { FetchApiDataService } from '../fetch-api-data.service';
 // This import is used to display notifications back to the user
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { formatDate } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'
-
-
 
 
 @Component({
@@ -26,9 +22,10 @@ export class ProfilePageComponent implements OnInit {
 
  @Input() userData = { Name: '', Password: '', Email: '', Birthday:'', FavoriteMovies:''}
 
+
  user: any = {};
  FavoriteMovies: any[] = [];
- //updateUser = {Name: '', Password: '', Email: '', Birthday:''}
+ updateUser = {Name: '', Password: '', Email: '', Birthday:''}
 
 
  //@Input() movie: any;
@@ -70,7 +67,9 @@ export class ProfilePageComponent implements OnInit {
 //moved getFavoriteMoviesList to the top so it could run before anything else and the movies would populate the browser
   getFavoriteMoviesList(): void {
     this.fetchApiData.getOneUser().subscribe((response: any) => {
+
       this.user = response;
+      console.log('this user', this.user)
       this.userData.FavoriteMovies = this.user.FavoriteMovies;
       console.log('favorite movies', this.user.FavoriteMovies)
       // Use the filter method to filter movies based on FavoriteMovie
@@ -130,33 +129,53 @@ getUser(): void {
 
   
   updatedUser(): void {
-    console.log('userData', this.userData);
-       this.fetchApiData.updateUserInfo(this.userData).subscribe((response)=>{
-       console.log('user updated', response);
-       localStorage.setItem('user', JSON.stringify(response));
-        //this.updateUser = result;
-        //this.updateUser.Name = this.user.Name;
-        //this.updateUser.Email = this.user.Email;
-        //this.updateUser.Birthday = this.user.Birthday;
-  this.snackBar.open('profile successully updated', 'OK', {
-    duration:2000
-  })
-},
-(error) => {
-  if(error.status === 422) {
-    console.error('Validation error:', error.error);
-  }else{
-    console.error('Error updating user data:', error);
-    this.snackBar.open('Error updating user data', 'OK', {
-      duration: 2000
-    });
-  }
-})
+    //get current user info from local storage
+    let currentUser = localStorage.getItem('user')
+    console.log('current username', currentUser)
+    //handles if user is not logged in
+    if (!currentUser){
+      console.log('username not found')
+      return;
+    }
+    //extract username from current user format
+    const username = currentUser && JSON.parse(currentUser).Name;
+
+    //calls the service to update user information
+       this.fetchApiData.updateUserInfo(username, this.userData).subscribe((response) => {
+          console.log('user updated correctly',response)
+
+          //update the userData object with the response
+          if(response && response.Name) {
+            this.userData.Name = response.Name;
+          }
+          
+          localStorage.setItem('user', JSON.stringify(this.userData));//updating entire user object
+        console.log('profile updated user: ', this.userData.Name);
+
+        window.location.reload
+          this.snackBar.open('profile successully updated', 'OK', {
+            duration:2000
+ 
+         })
+      
+       
+      
+         })
+        }
+  
+      }
+        
+
+   
+  
 
 
-}
 
-}
+  
+
+
+
+
 
 
 
