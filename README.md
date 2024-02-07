@@ -1,6 +1,10 @@
 # MyFilmsAngularClient
 
-### Hello and welcome to MyFilms, Angualar-style. This project is my second application using my MongoDB movie database.  The first MyFilms was built using React and Javascript, for this one, I used Angular and Typescript.  The functionality of the app is the same in both but I went for a different style for the Angular MyFilms.
+<img src="./MyFilmsHome.png">
+
+### Hello and welcome to MyFilms, Angualar-style! 
+
+This project is my second application using my MongoDB movie database.  The first MyFilms was built using React and Javascript, for this one, I used Angular and Typescript.  The functionality of the app is the same in both but I went for a different style for the Angular MyFilms.
 
 ##What can a user do on MyFilms?
 
