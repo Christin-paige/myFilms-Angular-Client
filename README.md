@@ -14,6 +14,7 @@ If a user wants to save a movie to their profile, they can click on the heart-ic
 It is in my future plans to remedy this situation.
 
 ## How was it made?
+
 MyFilms, version 002, was built using HTML, SCSS, TypeScript, and Angular.  It was my first time writing code in Typescript and my first time using Angular.  I do appreciate that TypeScript and Angular are opinionated as it seems to save time when writing code to see an error immediately.  As a beginner, I also liked the clarity in the reasoning of the error when hovering over it.  When it comes to the Angular/React debate?  I am on the fence as both apps were my first using the respective frameworks.  I'll update this with my take after a few more projects and a bit more experience.
 
 
