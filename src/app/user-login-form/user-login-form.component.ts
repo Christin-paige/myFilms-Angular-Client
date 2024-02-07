@@ -60,7 +60,8 @@ loginUser(): void {
       duration: 2000
     });
     
-  });
+  }
+  );
   
 }
 

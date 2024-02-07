@@ -181,15 +181,15 @@ getUser(): void {
           this.snackBar.open('profile successully updated', 'OK', {
             duration:2000
            
- 
          })
-      
-       
       
          })
         }
-  
       }
+       
+        
+  
+      
         
 
    
