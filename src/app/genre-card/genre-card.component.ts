@@ -16,7 +16,7 @@ export class GenreCardComponent implements OnInit {
   /**
    * This is the constructor for the component
    * @param data 
-   * @returns Title and Description aka genres name
+   * @returns Title and Description 
    */
 
   constructor(

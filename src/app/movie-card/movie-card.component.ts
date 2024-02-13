@@ -39,6 +39,10 @@ ngOnInit(): void {
 
  
 }
+/**
+ * @param movie data
+ * @returns all movies in the database
+ */
 
 getMovies(): void {
   this.fetchApiData.getAllMovies().subscribe((resp: any) => {
@@ -51,7 +55,7 @@ getMovies(): void {
   }
 
    /**
-   * opens a dialog with more information about the movie's genre
+   * @returns dialog with more information about the movie's genre
    * @param genre
    */
 
@@ -65,7 +69,7 @@ getMovies(): void {
     })
     };
      /**
-   * opens a dialog with more information about the movie's director
+   * @returns a dialog with more information about the movie's director
    * @param director
    */
 
@@ -80,7 +84,7 @@ getMovies(): void {
      }
 
      /**
-      * opens a dialog with a description about the movie
+      * @returns a dialog with a description about the movie
       * @param Description 
       */
 
@@ -94,7 +98,7 @@ getMovies(): void {
 
    /**
     * If user clicks the heart icon, the movie will be added to their favorite movie list
-    * snackBar will communicate that the movie has been successfully added
+    * @returns a snackBar that communicate that the movie has been successfully added
     * @param movie 
     */
      addToFavorites(movie: any): void {

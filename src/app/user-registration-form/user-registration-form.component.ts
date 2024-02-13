@@ -28,12 +28,17 @@ constructor(
 ngOnInit(): void {
 }
 
-// This is the function responsible for sending the form inputs to the backend
+/**
+ * This is the function responsible for sending the form inputs to the backend
+ * @returns snackBar dialog box for successful registration
+ * */
+
 registerUser(): void {
     this.fetchApiData.userRegistration(this.userData).subscribe((response) => {
       console.log('success response:', response)
-  // Logic for a successful user registration goes here! (To be implemented)
-     this.dialogRef.close(); // This will close the modal on success!
+
+     // Logic for a successful user registration goes here! (To be implemented)
+     this.dialogRef.close(); 
      console.log(response);
      this.snackBar.open('user registered correctly', 'OK', {
         duration: 2000

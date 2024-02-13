@@ -133,8 +133,8 @@ getMovies(): void {
   }
 
   /**
- * Username and token will be taken from localstorage to send a request to the api for the users information
- * User profile page will then be able to display the users favorite movies list and their username, name, email, etc.
+ * @params Username and token will be taken from localstorage to send a request to the api for the users information
+ * @returns User profile page will then be able to display the users favorite movies list and their username, name, email, etc.
    * @returns user's data
    */
 
@@ -149,7 +149,13 @@ getUser(): void {
       });
     }
 
-  
+  /**
+   * 
+   * @returns user data from local storage
+   * @params user data and updated user data
+   * @returns updated user data
+   */
+
   updatedUser(): void {
 
     //get current user info from local storage
